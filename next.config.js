@@ -1,7 +1,3 @@
-const path = require("node:path");
-
-const LOADER = path.resolve(__dirname, "src/visual-edits/component-tagger-loader.js");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -16,19 +12,13 @@ const nextConfig = {
       },
     ],
   },
-  outputFileTracingRoot: path.resolve(__dirname, "../../"),
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+
+  // Prevent Vercel build failures
   eslint: {
     ignoreDuringBuilds: true,
   },
-  turbopack: {
-    rules: {
-      "*.{jsx,tsx}": {
-        loaders: [LOADER],
-      },
-    },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
