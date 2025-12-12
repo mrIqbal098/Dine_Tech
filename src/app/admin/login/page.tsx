@@ -7,26 +7,23 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function AdminRegister() {
+export default function AdminLogin() {
   const router = useRouter();
-  const { register } = useFirebaseAuth();
-
+  const { login } = useFirebaseAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleRegister(e: any) {
+  async function handleLogin(e: any) {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await register(email, password);
+      await login(email, password);
       router.push("/admin/dashboard");
-    } catch (err: any) {
-      console.error("REGISTER ERROR:", err);
-      alert(err.code || err.message);
+    } catch (err) {
+      alert("Invalid credentials");
     }
-
 
     setLoading(false);
   }
@@ -34,10 +31,10 @@ export default function AdminRegister() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <form
-        onSubmit={handleRegister}
+        onSubmit={handleLogin}
         className="p-8 border rounded max-w-sm w-full space-y-4"
       >
-        <h1 className="text-2xl font-bold">Create Admin Account</h1>
+        <h1 className="text-2xl font-bold">Admin Login</h1>
 
         <Input
           placeholder="Email"
@@ -53,13 +50,13 @@ export default function AdminRegister() {
         />
 
         <Button className="w-full" type="submit" disabled={loading}>
-          {loading ? "Registering..." : "Register"}
+          {loading ? "Logging in..." : "Login"}
         </Button>
 
         <p className="text-sm text-center">
-          Already have an account?{" "}
-          <Link href="/admin/login" className="text-blue-600">
-            Login
+          No account?{" "}
+          <Link href="/admin/register" className="text-blue-600">
+            Register
           </Link>
         </p>
       </form>
