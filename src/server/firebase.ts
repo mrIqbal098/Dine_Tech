@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDn0sBOdDJ8MCBkaGN_0P-Tj-hV5raMXCo",
   authDomain: "dinetech-2d402.firebaseapp.com",
   projectId: "dinetech-2d402",
-  storageBucket: "dinetech-2d402.firebasestorage.app",
+  storageBucket: "dinetech-2d402.appspot.com",
   messagingSenderId: "377153917170",
   appId: "1:377153917170:web:b3559f130951dee80b006b",
   measurementId: "G-NYNS3J7PK8"
