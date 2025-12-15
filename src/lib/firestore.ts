@@ -23,9 +23,12 @@ export async function createRestaurant(data: any) {
 }
 
 export async function getAllRestaurants() {
-  const snap = await getDocs(query(collection(db, "restaurants"), orderBy("name")));
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const snap = await getDocs(collection(db, "restaurants"));
+  return snap.docs
+    .map((d) => ({ id: d.id, ...d.data() }))
+    .sort((a: any, b: any) => a.name?.localeCompare(b.name));
 }
+
 
 export async function getRestaurantBySlug(slug: string) {
   const q = query(collection(db, "restaurants"), where("slug", "==", slug));
